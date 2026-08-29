@@ -122,9 +122,17 @@ export default function PartnerMap({ userLat, userLng, loanCategory, t }) {
       marker.on('click', () => setSelectedPartnerId(partner.id));
       markersRef.current.push(marker);
 
-      // Auto-open popup for top recommendation without panning the browser window
+      // Auto-open popup for top recommendation safely after map layout settles
       if (isTop) {
-        marker.openPopup({ autoPan: false });
+        setTimeout(() => {
+          try {
+            if (marker && marker._map) {
+              marker.openPopup({ autoPan: false });
+            }
+          } catch (e) {
+            console.warn('Map popup open skipped:', e.message);
+          }
+        }, 150);
       }
     });
 
