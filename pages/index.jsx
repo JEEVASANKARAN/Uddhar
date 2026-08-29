@@ -13,9 +13,50 @@ import ta from '../data/translations/ta.json';
 
 const translationsMap = { en, hi, ta };
 
+// Phase 7: Pre-loaded demo profiles for live presentation
+const DEMO_PROFILES = [
+  {
+    id: 'micro',
+    label: 'Micro Business',
+    sublabel: '→ NSFDC MF Scheme',
+    income: 200000,
+    projectCost: 110000,
+    projectType: 'micro_business',
+    educationStatus: 'undergraduate',
+    userLat: 13.0400,
+    userLng: 80.2300,
+    locationName: 'T. Nagar, Chennai',
+  },
+  {
+    id: 'term',
+    label: 'Medium Enterprise',
+    sublabel: '→ NSFDC Term Loan',
+    income: 380000,
+    projectCost: 350000,
+    projectType: 'medium_business',
+    educationStatus: 'undergraduate',
+    userLat: 13.0067,
+    userLng: 80.2020,
+    locationName: 'Guindy, Chennai',
+  },
+  {
+    id: 'education',
+    label: 'Higher Education',
+    sublabel: '→ NSFDC Edu Loan',
+    income: 280000,
+    projectCost: 800000,
+    projectType: 'education',
+    educationStatus: 'postgraduate',
+    userLat: 13.1143,
+    userLng: 80.1548,
+    locationName: 'Ambattur, Chennai',
+  },
+];
+
 export default function Home() {
   const [lang, setLang] = useState('en');
   const t = translationsMap[lang] || en;
+  const [activeDemoId, setActiveDemoId] = useState('micro');
 
   // Applicant Profile State
   const [profile, setProfile] = useState({
@@ -266,9 +307,51 @@ export default function Home() {
             <div className="panel-body">
               {/* LEFT SIDE: Inputs & Calculations */}
               <div className="panel-left">
-                <div className="section-label" style={{ marginBottom: '16px' }}>
+                <div className="section-label" style={{ marginBottom: '12px' }}>
                   {t?.stepProfile || '1. Entrepreneur Profile & Inputs'}
                 </div>
+
+                {/* Phase 7: Demo quick-fill buttons */}
+                <div id="demo-profiles-bar" style={{ display: 'flex', gap: '6px', marginBottom: '18px', flexWrap: 'wrap' }}>
+                  {DEMO_PROFILES.map((dp) => (
+                    <button
+                      key={dp.id}
+                      id={`demo-btn-${dp.id}`}
+                      type="button"
+                      onClick={() => {
+                        setActiveDemoId(dp.id);
+                        const { id, label, sublabel, ...profileFields } = dp;
+                        setProfile(profileFields);
+                        // auto-calculate after setting profile
+                        setTimeout(() => {
+                          const res = require('../lib/ruleEngine').recommendScheme(profileFields);
+                          setSchemeResult(res);
+                          if (res && res.eligible && res.scheme) {
+                            setTenureMonths(res.scheme.maxTenureMonths || 36);
+                            setMoratoriumMonths(res.scheme.moratoriumMonthsMin || 6);
+                          }
+                          fetchLLMExplanation(res, lang);
+                        }, 0);
+                      }}
+                      style={{
+                        fontSize: '11px',
+                        fontFamily: 'IBM Plex Mono, monospace',
+                        padding: '5px 10px',
+                        borderRadius: '3px',
+                        border: activeDemoId === dp.id ? '1px solid var(--gold)' : '1px solid var(--rule)',
+                        background: activeDemoId === dp.id ? 'rgba(227,168,59,0.15)' : 'var(--bg-deep)',
+                        color: activeDemoId === dp.id ? 'var(--gold)' : 'var(--stone)',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s',
+                        textAlign: 'left',
+                      }}
+                    >
+                      <div>{dp.label}</div>
+                      <div style={{ fontSize: '9px', opacity: 0.75 }}>{dp.sublabel}</div>
+                    </button>
+                  ))}
+                </div>
+
                 <ProfileForm
                   profile={profile}
                   onChange={setProfile}
