@@ -1,0 +1,53 @@
+[
+  {
+    "id": "micro_finance",
+    "name": "Micro Finance Scheme",
+    "category": "micro_finance",
+    "maxIncome": 500000,
+    "minProjectCost": 0,
+    "maxProjectCost": 140000,
+    "maxLoanAmount": 126000,
+    "financingPercentage": 90,
+    "interestRateMin": 6.5,
+    "interestRateMax": 6.5,
+    "moratoriumMonthsMin": 3,
+    "moratoriumMonthsMax": 6,
+    "maxTenureMonths": 36,
+    "description": "Concessional micro-credit for small income generation activities up to ₹1.40 Lakh.",
+    "targetAudience": "Self-employed micro-entrepreneurs, small artisans, and street vendors."
+  },
+  {
+    "id": "term_loan",
+    "name": "Term Loan Scheme",
+    "category": "term_loan",
+    "maxIncome": 500000,
+    "minProjectCost": 140001,
+    "maxProjectCost": 5000000,
+    "maxLoanAmount": 4500000,
+    "financingPercentage": 90,
+    "interestRateMin": 7.0,
+    "interestRateMax": 8.0,
+    "moratoriumMonthsMin": 6,
+    "moratoriumMonthsMax": 12,
+    "maxTenureMonths": 60,
+    "description": "Term loans for medium & large business units, transport, and commercial ventures up to ₹50.00 Lakh.",
+    "targetAudience": "Small & medium enterprises, commercial vehicle operators, and service ventures."
+  },
+  {
+    "id": "educational_loan",
+    "name": "Educational Loan Scheme",
+    "category": "education",
+    "maxIncome": 500000,
+    "minProjectCost": 0,
+    "maxProjectCost": 2000000,
+    "maxLoanAmount": 1800000,
+    "financingPercentage": 90,
+    "interestRateMin": 4.0,
+    "interestRateMax": 4.0,
+    "moratoriumMonthsMin": 6,
+    "moratoriumMonthsMax": 12,
+    "maxTenureMonths": 84,
+    "description": "Concessional education loans for professional and technical courses in India or abroad.",
+    "targetAudience": "Eligible SC students pursuing professional, medical, engineering, or higher technical degrees."
+  }
+]

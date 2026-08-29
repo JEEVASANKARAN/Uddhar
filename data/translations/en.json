@@ -1,0 +1,42 @@
+{
+  "appTitle": "Uddhar — AI-Driven Scheme Matching & Smart Channel Routing",
+  "subtitle": "Concessional Loans & Smart Partner Routing for Marginalized Entrepreneurs",
+  "stepProfile": "1. Entrepreneur Profile",
+  "stepScheme": "2. Scheme Recommendation",
+  "stepEMI": "3. EMI Calculator",
+  "stepPartner": "4. Channel Partner Map",
+  "labels": {
+    "projectType": "Project Type",
+    "projectCost": "Estimated Project Cost (₹)",
+    "annualIncome": "Annual Family Income (₹)",
+    "educationStatus": "Education Status / Course Type",
+    "submit": "Recommend Scheme",
+    "findPartners": "Find Authorized Channel Partners",
+    "filterHealthyOnly": "Hide Unhealthy Partners (NPA > 8%)",
+    "recommendedScheme": "Recommended Scheme",
+    "interestRate": "Interest Rate",
+    "maxSubsidy": "Financing Coverage",
+    "moratorium": "Moratorium Grace Period",
+    "loanAmount": "Loan Amount (₹)",
+    "tenure": "Repayment Tenure (Months)",
+    "monthlyEMI": "Estimated Monthly EMI",
+    "totalRepayment": "Total Repayment",
+    "totalInterest": "Total Interest Payable",
+    "partnerName": "Partner Name",
+    "partnerType": "Agency Type",
+    "npaRate": "NPA Default Rate",
+    "utilization": "Fund Utilization Rate",
+    "distance": "Distance",
+    "status": "Health Status",
+    "healthy": "Healthy / Operational",
+    "unhealthy": "High Risk / Poor Utilization"
+  },
+  "options": {
+    "microBusiness": "Micro Business / Shop / Artisan",
+    "mediumBusiness": "Medium Business / Enterprise / Transport",
+    "higherEducation": "Higher Professional / Technical Education",
+    "undergraduate": "Undergraduate Degree",
+    "postgraduate": "Postgraduate / Doctorate",
+    "diploma": "Vocational / Technical Diploma"
+  }
+}
