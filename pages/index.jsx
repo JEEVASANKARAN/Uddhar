@@ -108,14 +108,14 @@ export default function Home() {
             Uddhar
           </div>
           <div className="navlinks">
-            <a href="#flow">How it works</a>
-            <a href="#panel">Inside the platform</a>
-            <a href="#compare">Why not myScheme</a>
+            <a href="#flow">{t?.nav?.howItWorks || 'How it works'}</a>
+            <a href="#panel">{t?.nav?.insidePlatform || 'Inside the platform'}</a>
+            <a href="#compare">{t?.nav?.whyNotMyScheme || 'Why not myScheme'}</a>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <LanguageSwitcher currentLang={lang} onChangeLang={setLang} />
             <a href="#panel" className="nav-cta">
-              Check eligibility
+              {t?.nav?.checkEligibility || 'Check eligibility'}
             </a>
           </div>
         </div>
@@ -124,20 +124,24 @@ export default function Home() {
       {/* HERO */}
       <section className="hero">
         <div className="wrap">
-          <div className="eyebrow">NSFDC Channel Finance, made navigable</div>
+          <div className="eyebrow">{t?.hero?.eyebrow || 'NSFDC Channel Finance, made navigable'}</div>
           <h1 className="hero-headline">
-            A mountain was lifted<br />
-            so a village <em>wouldn't drown.</em>
+            {t?.hero?.headlineMain || 'A mountain was lifted'}<br />
+            {t?.hero?.headlineSub ? (
+              <em>{t.hero.headlineSub}</em>
+            ) : (
+              <>so a village <em>wouldn't drown.</em></>
+            )}
           </h1>
           <p className="hero-sub">
-            Every year, concessional credit sits unclaimed — not because people don't qualify, but because the system to reach it was never built for them. Uddhar is that missing shelter: the right scheme, the real cost, and a partner who can actually pay out.
+            {t?.hero?.sub || "Every year, concessional credit sits unclaimed — not because people don't qualify, but because the system to reach it was never built for them. Uddhar is that missing shelter: the right scheme, the real cost, and a partner who can actually pay out."}
           </p>
           <div className="hero-actions">
             <a href="#panel" className="btn-primary">
-              See it work
+              {t?.hero?.seeItWork || 'See it work'}
             </a>
             <a href="#flow" className="btn-ghost">
-              Read the three steps ↓
+              {t?.hero?.readSteps || 'Read the three steps ↓'}
             </a>
           </div>
         </div>
@@ -172,20 +176,20 @@ export default function Home() {
       <div className="stats">
         <div className="wrap">
           <div className="stat">
-            <b>100+</b>
-            <span>Channel Partners a citizen must choose between, blind</span>
+            <b>{t?.stats?.stat1Num || '100+'}</b>
+            <span>{t?.stats?.stat1Text || 'Channel Partners a citizen must choose between, blind'}</span>
           </div>
           <div className="stat">
-            <b>3</b>
-            <span>Loan schemes, near-indistinguishable without guidance</span>
+            <b>{t?.stats?.stat2Num || '3'}</b>
+            <span>{t?.stats?.stat2Text || 'Loan schemes, near-indistinguishable without guidance'}</span>
           </div>
           <div className="stat">
-            <b>6.5%</b>
-            <span>Interest available — a third of open-market rates</span>
+            <b>{t?.stats?.stat3Num || '6.5%'}</b>
+            <span>{t?.stats?.stat3Text || 'Interest available — a third of open-market rates'}</span>
           </div>
           <div className="stat">
-            <b>0</b>
-            <span>Existing tools that check if a partner can actually pay</span>
+            <b>{t?.stats?.stat4Num || '0'}</b>
+            <span>{t?.stats?.stat4Text || 'Existing tools that check if a partner can actually pay'}</span>
           </div>
         </div>
       </div>
@@ -194,42 +198,42 @@ export default function Home() {
       <section id="flow">
         <div className="wrap">
           <div className="section-head">
-            <span className="section-label">The lift, in three motions</span>
-            <h2>Not a search bar. A sequence that ends in funding.</h2>
+            <span className="section-label">{t?.flow?.label || 'The lift, in three motions'}</span>
+            <h2>{t?.flow?.title || 'Not a search bar. A sequence that ends in funding.'}</h2>
             <p className="section-desc">
-              Each step exists because the one before it is useless alone — a scheme match without a real cost is a guess, and a cost without a working partner is a dead end.
+              {t?.flow?.desc || 'Each step exists because the one before it is useless alone — a scheme match without a real cost is a guess, and a cost without a working partner is a dead end.'}
             </p>
           </div>
 
           <div className="flow">
             <div className="flow-row">
               <div className="flow-num">I</div>
-              <div className="flow-title">Recommend</div>
+              <div className="flow-title">{t?.flow?.step1Title || 'Recommend'}</div>
               <div>
                 <div className="flow-body">
-                  Income, project cost, and purpose go in. A deterministic rule engine — not a guess, not a black box — returns the one scheme that actually fits: Micro Finance, Term Loan, or Educational Loan.
+                  {t?.flow?.step1Body || 'Income, project cost, and purpose go in. A deterministic rule engine — not a guess, not a black box — returns the one scheme that actually fits: Micro Finance, Term Loan, or Educational Loan.'}
                 </div>
-                <span className="flow-tag">Rule-based · fully auditable</span>
+                <span className="flow-tag">{t?.flow?.step1Tag || 'Rule-based · fully auditable'}</span>
               </div>
             </div>
             <div className="flow-row">
               <div className="flow-num">II</div>
-              <div className="flow-title">Calculate</div>
+              <div className="flow-title">{t?.flow?.step2Title || 'Calculate'}</div>
               <div>
                 <div className="flow-body">
-                  The real EMI, at the scheme's true interest band and moratorium — seen before a single form is filed at a bank. No surprises at the counter.
+                  {t?.flow?.step2Body || "The real EMI, at the scheme's true interest band and moratorium — seen before a single form is filed at a bank. No surprises at the counter."}
                 </div>
-                <span className="flow-tag">Live amortization</span>
+                <span className="flow-tag">{t?.flow?.step2Tag || 'Live amortization'}</span>
               </div>
             </div>
             <div className="flow-row">
               <div className="flow-num">III</div>
-              <div className="flow-title">Route</div>
+              <div className="flow-title">{t?.flow?.step3Title || 'Route'}</div>
               <div>
                 <div className="flow-body">
-                  The nearest authorized partner, filtered by fund health — NPA levels, utilization, overdues — before it's ever shown. Distance alone was never the right filter.
+                  {t?.flow?.step3Body || "The nearest authorized partner, filtered by fund health — NPA levels, utilization, overdues — before it's ever shown. Distance alone was never the right filter."}
                 </div>
-                <span className="flow-tag">Health-filtered · our core novelty</span>
+                <span className="flow-tag">{t?.flow?.step3Tag || 'Health-filtered · our core novelty'}</span>
               </div>
             </div>
           </div>
@@ -240,9 +244,9 @@ export default function Home() {
       <div className="panel-section" id="panel">
         <div className="wrap" style={{ padding: '100px 0' }}>
           <div className="section-head">
-            <span className="section-label">Inside the platform</span>
-            <h2>What the applicant actually sees</h2>
-            <p className="section-desc">One continuous read — eligibility, cost, and a partner worth walking to.</p>
+            <span className="section-label">{t?.panel?.label || 'Inside the platform'}</span>
+            <h2>{t?.panel?.title || 'What the applicant actually sees'}</h2>
+            <p className="section-desc">{t?.panel?.desc || 'One continuous read — eligibility, cost, and a partner worth walking to.'}</p>
           </div>
 
           <div className="panel">
@@ -252,7 +256,7 @@ export default function Home() {
                 <span></span>
                 <span></span>
               </div>
-              <div className="panel-title">uddhar.gov — applicant view</div>
+              <div className="panel-title">{t?.panel?.appTitle || 'uddhar.gov — applicant view'}</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '11px', color: 'var(--stone)' }}>Lang:</span>
                 <LanguageSwitcher currentLang={lang} onChangeLang={setLang} />
@@ -324,39 +328,39 @@ export default function Home() {
       <section id="compare">
         <div className="wrap">
           <div className="section-head">
-            <span className="section-label">Why not just search myScheme.gov.in</span>
-            <h2>Search finds a page. Uddhar finds a way through.</h2>
+            <span className="section-label">{t?.compare?.label || 'Why not just search myScheme.gov.in'}</span>
+            <h2>{t?.compare?.title || 'Search finds a page. Uddhar finds a way through.'}</h2>
           </div>
 
           <div className="compare">
             <div className="compare-col">
-              <div className="compare-head">Existing portals</div>
+              <div className="compare-head">{t?.compare?.existingTitle || 'Existing portals'}</div>
               <div className="compare-item">
-                <span className="mark">–</span> Requires knowing what to search for
+                <span className="mark">–</span> {t?.compare?.ex1 || 'Requires knowing what to search for'}
               </div>
               <div className="compare-item">
-                <span className="mark">–</span> No repayment figures shown
+                <span className="mark">–</span> {t?.compare?.ex2 || 'No repayment figures shown'}
               </div>
               <div className="compare-item">
-                <span className="mark">–</span> Every partner treated as equal
+                <span className="mark">–</span> {t?.compare?.ex3 || 'Every partner treated as equal'}
               </div>
               <div className="compare-item">
-                <span className="mark">–</span> One-language interface
+                <span className="mark">–</span> {t?.compare?.ex4 || 'One-language interface'}
               </div>
             </div>
             <div className="compare-col win">
-              <div className="compare-head">Uddhar</div>
+              <div className="compare-head">{t?.compare?.uddharTitle || 'Uddhar'}</div>
               <div className="compare-item">
-                <span className="mark">✓</span> Infers the scheme from income and cost alone
+                <span className="mark">✓</span> {t?.compare?.ud1 || 'Infers the scheme from income and cost alone'}
               </div>
               <div className="compare-item">
-                <span className="mark">✓</span> Real EMI, before you approach a bank
+                <span className="mark">✓</span> {t?.compare?.ud2 || 'Real EMI, before you approach a bank'}
               </div>
               <div className="compare-item">
-                <span className="mark">✓</span> Filters out partners unlikely to disburse
+                <span className="mark">✓</span> {t?.compare?.ud3 || 'Filters out partners unlikely to disburse'}
               </div>
               <div className="compare-item">
-                <span className="mark">✓</span> Explained back to you in your own language
+                <span className="mark">✓</span> {t?.compare?.ud4 || 'Explained back to you in your own language'}
               </div>
             </div>
           </div>
@@ -367,17 +371,17 @@ export default function Home() {
       <footer>
         <div className="wrap">
           <span className="section-label" style={{ justifyContent: 'center', display: 'flex' }}>
-            SIH 2026 · PS 26092
+            {t?.footer?.slogan || 'SIH 2026 · PS 26092'}
           </span>
           <h2>
-            The goal was never approval.<br />
-            It was always getting the money into the right hands.
+            {t?.footer?.headingMain || 'The goal was never approval.'}<br />
+            {t?.footer?.headingSub || 'It was always getting the money into the right hands.'}
           </h2>
           <a href="#panel" className="btn-primary">
-            Check your eligibility
+            {t?.footer?.cta || 'Check your eligibility'}
           </a>
           <div className="footer-fine">
-            UDDHAR — FROM SANSKRIT, "TO LIFT UP, TO RESCUE" — GOVARDHAN UDDHAR, BHAGAVATA PURANA
+            {t?.footer?.fine || 'UDDHAR — FROM SANSKRIT, "TO LIFT UP, TO RESCUE" — GOVARDHAN UDDHAR, BHAGAVATA PURANA'}
           </div>
         </div>
       </footer>

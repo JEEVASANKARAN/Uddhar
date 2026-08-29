@@ -1,10 +1,52 @@
 {
-  "appTitle": "Uddhar — AI-Driven Scheme Matching & Smart Channel Routing",
-  "subtitle": "Concessional Loans & Smart Partner Routing for Marginalized Entrepreneurs",
-  "stepProfile": "1. Entrepreneur Profile",
+  "nav": {
+    "howItWorks": "How it works",
+    "insidePlatform": "Inside the platform",
+    "whyNotMyScheme": "Why not myScheme",
+    "checkEligibility": "Check eligibility"
+  },
+  "hero": {
+    "eyebrow": "NSFDC Channel Finance, made navigable",
+    "headlineMain": "A mountain was lifted",
+    "headlineSub": "so a village wouldn't drown.",
+    "sub": "Every year, concessional credit sits unclaimed — not because people don't qualify, but because the system to reach it was never built for them. Uddhar is that missing shelter: the right scheme, the real cost, and a partner who can actually pay out.",
+    "seeItWork": "See it work",
+    "readSteps": "Read the three steps ↓"
+  },
+  "stats": {
+    "stat1Num": "100+",
+    "stat1Text": "Channel Partners a citizen must choose between, blind",
+    "stat2Num": "3",
+    "stat2Text": "Loan schemes, near-indistinguishable without guidance",
+    "stat3Num": "6.5%",
+    "stat3Text": "Interest available — a third of open-market rates",
+    "stat4Num": "0",
+    "stat4Text": "Existing tools that check if a partner can actually pay"
+  },
+  "flow": {
+    "label": "The lift, in three motions",
+    "title": "Not a search bar. A sequence that ends in funding.",
+    "desc": "Each step exists because the one before it is useless alone — a scheme match without a real cost is a guess, and a cost without a working partner is a dead end.",
+    "step1Title": "Recommend",
+    "step1Body": "Income, project cost, and purpose go in. A deterministic rule engine — not a guess, not a black box — returns the one scheme that actually fits: Micro Finance, Term Loan, or Educational Loan.",
+    "step1Tag": "Rule-based · fully auditable",
+    "step2Title": "Calculate",
+    "step2Body": "The real EMI, at the scheme's true interest band and moratorium — seen before a single form is filed at a bank. No surprises at the counter.",
+    "step2Tag": "Live amortization",
+    "step3Title": "Route",
+    "step3Body": "The nearest authorized partner, filtered by fund health — NPA levels, utilization, overdues — before it's ever shown. Distance alone was never the right filter.",
+    "step3Tag": "Health-filtered · our core novelty"
+  },
+  "panel": {
+    "label": "Inside the platform",
+    "title": "What the applicant actually sees",
+    "desc": "One continuous read — eligibility, cost, and a partner worth walking to.",
+    "appTitle": "uddhar.gov — applicant view"
+  },
+  "stepProfile": "1. Entrepreneur Profile & Inputs",
   "stepScheme": "2. Scheme Recommendation",
-  "stepEMI": "3. EMI Calculator",
-  "stepPartner": "4. Channel Partner Map",
+  "stepEMI": "3. EMI Projection & Repayment Breakdown",
+  "stepPartner": "4. Authorized Channel Partner Routing",
   "labels": {
     "projectType": "Project Type",
     "projectCost": "Estimated Project Cost (₹)",
@@ -28,15 +70,36 @@
     "utilization": "Fund Utilization Rate",
     "distance": "Distance",
     "status": "Health Status",
-    "healthy": "Healthy / Operational",
-    "unhealthy": "High Risk / Poor Utilization"
+    "healthy": "Route Here",
+    "unhealthy": "Filtered Out"
   },
   "options": {
-    "microBusiness": "Micro Business / Shop / Artisan",
-    "mediumBusiness": "Medium Business / Enterprise / Transport",
+    "microBusiness": "Micro Business / Shop / Artisan (Up to ₹1.4L)",
+    "mediumBusiness": "Medium Business / Enterprise / Transport (Up to ₹50L)",
     "higherEducation": "Higher Professional / Technical Education",
     "undergraduate": "Undergraduate Degree",
     "postgraduate": "Postgraduate / Doctorate",
     "diploma": "Vocational / Technical Diploma"
+  },
+  "compare": {
+    "label": "Why not just search myScheme.gov.in",
+    "title": "Search finds a page. Uddhar finds a way through.",
+    "existingTitle": "Existing portals",
+    "uddharTitle": "Uddhar",
+    "ex1": "Requires knowing what to search for",
+    "ex2": "No repayment figures shown",
+    "ex3": "Every partner treated as equal",
+    "ex4": "One-language interface",
+    "ud1": "Infers the scheme from income and cost alone",
+    "ud2": "Real EMI, before you approach a bank",
+    "ud3": "Filters out partners unlikely to disburse",
+    "ud4": "Explained back to you in your own language"
+  },
+  "footer": {
+    "slogan": "SIH 2026 · PS 26092",
+    "headingMain": "The goal was never approval.",
+    "headingSub": "It was always getting the money into the right hands.",
+    "cta": "Check your eligibility",
+    "fine": "UDDHAR — FROM SANSKRIT, \"TO LIFT UP, TO RESCUE\" — GOVARDHAN UDDHAR, BHAGAVATA PURANA"
   }
 }
