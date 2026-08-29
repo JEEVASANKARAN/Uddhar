@@ -117,14 +117,14 @@ export default function PartnerMap({ userLat, userLng, loanCategory, t }) {
             ✓ Route Authorized
           </span>
         </div>
-      `);
+      `, { autoPan: false });
 
       marker.on('click', () => setSelectedPartnerId(partner.id));
       markersRef.current.push(marker);
 
-      // Auto-open popup for top recommendation
+      // Auto-open popup for top recommendation without panning the browser window
       if (isTop) {
-        marker.openPopup();
+        marker.openPopup({ autoPan: false });
       }
     });
 

@@ -130,6 +130,33 @@ export default function Home() {
     handleCalculateScheme();
   }, []);
 
+  // Scroll management: restore last position on refresh, or start at top (Hero landing page) on first enter
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    const savedPos = sessionStorage.getItem('uddhar_scroll_pos');
+    if (savedPos !== null) {
+      // Refresh case: restore exact scroll position where user was last
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedPos, 10));
+      }, 50);
+    } else {
+      // First visit in session: scroll to top of landing page
+      window.scrollTo(0, 0);
+    }
+
+    const handleScroll = () => {
+      sessionStorage.setItem('uddhar_scroll_pos', window.scrollY.toString());
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <Head>
