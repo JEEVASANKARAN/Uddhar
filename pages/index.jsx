@@ -157,6 +157,27 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Scroll-reveal: add .in-view class when elements enter viewport (CSS handles animation)
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    const targets = document.querySelectorAll('.flow-row, .compare-col, .panel');
+    targets.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <Head>
@@ -229,6 +250,7 @@ export default function Home() {
             fill="url(#ridgeFade)"
           />
           <path
+            className="ridge-draw"
             d="M0,120 L60,70 L120,110 L180,40 L240,95 L300,55 L360,100 L420,60 L480,90
                L540,50 L600,85 L660,45 L720,70 L780,55 L840,72 L900,60 L960,70
                L1020,64 L1080,68 L1140,62 L1200,66 L1260,63 L1320,65 L1380,64 L1440,65"

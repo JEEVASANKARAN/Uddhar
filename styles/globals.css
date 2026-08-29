@@ -664,3 +664,448 @@ footer .btn-primary {
 .leaflet-container {
   background: #0D111A !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS & HOVER MICRO-INTERACTIONS
+   CSS-only. No JS. No layout shifts. transform + opacity only.
+   Every hover/active state is additive — never breaks function.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ----- Easing tokens ----- */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── 1. Page-entry hero animations (run once on load) ────────── */
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes numPop {
+  0%   { opacity: 0; transform: scale(0.88) translateY(8px); }
+  70%  { transform: scale(1.04) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes ridgeDraw {
+  from { stroke-dashoffset: 2000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Hero headline — staggered lines */
+.eyebrow {
+  animation: fadeSlideUp 0.7s var(--ease-out-expo) both;
+  animation-delay: 0.05s;
+}
+
+h1.hero-headline {
+  animation: fadeSlideUp 0.8s var(--ease-out-expo) both;
+  animation-delay: 0.15s;
+}
+
+.hero-sub {
+  animation: fadeSlideUp 0.8s var(--ease-out-expo) both;
+  animation-delay: 0.28s;
+}
+
+.hero-actions {
+  animation: fadeSlideUp 0.7s var(--ease-out-expo) both;
+  animation-delay: 0.4s;
+}
+
+/* Stat strip — each stat pops in */
+.stat:nth-child(1) { animation: numPop 0.65s var(--ease-spring) both; animation-delay: 0.1s; }
+.stat:nth-child(2) { animation: numPop 0.65s var(--ease-spring) both; animation-delay: 0.2s; }
+.stat:nth-child(3) { animation: numPop 0.65s var(--ease-spring) both; animation-delay: 0.3s; }
+.stat:nth-child(4) { animation: numPop 0.65s var(--ease-spring) both; animation-delay: 0.4s; }
+
+/* Ridge SVG stroke draw-on */
+.ridge-draw {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: ridgeDraw 1.8s var(--ease-out-expo) forwards;
+  animation-delay: 0.3s;
+}
+
+
+/* ── 2. Scroll-reveal classes (toggled by IntersectionObserver) ─ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity  600ms var(--ease-out-expo),
+    transform 600ms var(--ease-out-expo);
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Flow rows — staggered via inline style delay set in JSX */
+.flow-row {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity  550ms var(--ease-out-expo),
+    transform 550ms var(--ease-out-expo),
+    border-left-color 0.25s var(--ease-in-out),
+    background 0.25s var(--ease-in-out);
+}
+
+.flow-row.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Compare columns slide in from sides */
+.compare-col:not(.win) {
+  opacity: 0;
+  transform: translateX(-14px);
+  transition:
+    opacity  550ms var(--ease-out-expo),
+    transform 550ms var(--ease-out-expo);
+}
+
+.compare-col.win {
+  opacity: 0;
+  transform: translateX(14px);
+  transition:
+    opacity  550ms var(--ease-out-expo),
+    transform 550ms var(--ease-out-expo);
+}
+
+.compare-col.in-view,
+.compare-col.win.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Panel fades in */
+.panel {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity  700ms var(--ease-out-expo),
+    transform 700ms var(--ease-out-expo),
+    box-shadow 0.3s var(--ease-in-out);
+}
+
+.panel.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ── 3. Hover micro-interactions ─────────────────────────────── */
+
+/* Primary button — lift + gold bloom */
+.btn-primary {
+  transition:
+    transform 280ms var(--ease-out-expo),
+    background 220ms var(--ease-in-out),
+    box-shadow 280ms var(--ease-out-expo);
+  box-shadow: 0 2px 8px rgba(227, 168, 59, 0.15);
+  will-change: transform;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  background: #F0B65A;
+  box-shadow: 0 10px 28px -6px rgba(227, 168, 59, 0.50);
+}
+
+.btn-primary:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 8px rgba(227, 168, 59, 0.2);
+  transition-duration: 100ms;
+}
+
+/* Ghost button — underline expand + arrow nudge */
+.btn-ghost {
+  position: relative;
+  transition: color 220ms var(--ease-in-out);
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 300ms var(--ease-out-expo);
+}
+
+.btn-ghost:hover {
+  color: var(--gold);
+}
+
+.btn-ghost:hover::after {
+  transform: scaleX(1);
+}
+
+/* Nav CTA — lift */
+.nav-cta {
+  transition:
+    transform 260ms var(--ease-out-expo),
+    background 220ms var(--ease-in-out),
+    box-shadow 260ms var(--ease-out-expo);
+  box-shadow: 0 2px 8px rgba(227, 168, 59, 0.15);
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  background: #F0B65A;
+  box-shadow: 0 8px 20px -4px rgba(227, 168, 59, 0.45);
+}
+
+.nav-cta:active {
+  transform: translateY(0);
+  transition-duration: 80ms;
+}
+
+/* Nav links — subtle gold tint on hover */
+.navlinks a {
+  transition: color 200ms var(--ease-in-out);
+}
+
+/* Flow rows — left accent bar grows in, numeral shifts */
+.flow-row {
+  border-left: 2px solid transparent;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.flow-row:hover {
+  border-left-color: var(--gold);
+  background: rgba(28, 33, 64, 0.22);
+}
+
+.flow-row:hover .flow-num {
+  color: var(--gold);
+  transform: translateX(4px);
+}
+
+.flow-num {
+  transition:
+    color 250ms var(--ease-in-out),
+    transform 300ms var(--ease-out-expo);
+}
+
+/* Partner rows — surface lift + left border */
+.partner {
+  border-left: 2px solid transparent;
+  padding-left: 8px;
+  transition:
+    background 220ms var(--ease-in-out),
+    border-left-color 220ms var(--ease-in-out),
+    transform 260ms var(--ease-out-expo);
+  will-change: transform;
+}
+
+.partner:hover {
+  background: rgba(36, 42, 78, 0.55);
+  border-left-color: var(--gold);
+  transform: translateX(3px);
+}
+
+/* Partner health pill — glow pulse on hover (no layout change) */
+.partner:hover .health-good {
+  box-shadow: 0 0 10px rgba(78, 156, 125, 0.45);
+  transition: box-shadow 250ms var(--ease-in-out);
+}
+
+.partner:hover .health-bad {
+  box-shadow: 0 0 10px rgba(199, 112, 102, 0.4);
+  transition: box-shadow 250ms var(--ease-in-out);
+}
+
+/* Health pills — base transition */
+.health-pill {
+  transition:
+    box-shadow 250ms var(--ease-in-out),
+    opacity 200ms var(--ease-in-out);
+}
+
+/* Compare items — indent slide */
+.compare-item {
+  transition:
+    transform 250ms var(--ease-out-expo),
+    color 200ms var(--ease-in-out),
+    background 200ms var(--ease-in-out);
+  border-radius: 3px;
+}
+
+.compare-item:hover {
+  transform: translateX(5px);
+  background: rgba(243, 239, 230, 0.04);
+}
+
+.compare-col.win .compare-item:hover {
+  background: rgba(227, 168, 59, 0.07);
+}
+
+/* Match card — shimmer border on hover */
+.match-card {
+  transition:
+    border-color 300ms var(--ease-in-out),
+    box-shadow   300ms var(--ease-out-expo);
+}
+
+.match-card:hover {
+  border-color: rgba(227, 168, 59, 0.50);
+  box-shadow: 0 8px 24px -8px rgba(227, 168, 59, 0.20);
+}
+
+/* Form inputs — gold ring on focus (already transitions border) */
+.form-select, .form-input {
+  transition:
+    border-color 220ms var(--ease-in-out),
+    box-shadow   220ms var(--ease-in-out);
+}
+
+.form-select:focus, .form-input:focus {
+  box-shadow: 0 0 0 3px rgba(227, 168, 59, 0.14);
+}
+
+.form-select:hover, .form-input:hover {
+  border-color: rgba(227, 168, 59, 0.35);
+}
+
+/* Demo profile buttons (inline styled in JSX) — handled via CSS attr */
+[id^="demo-btn-"] {
+  transition:
+    background 220ms var(--ease-in-out),
+    border-color 220ms var(--ease-in-out),
+    color 220ms var(--ease-in-out),
+    transform 250ms var(--ease-out-expo);
+}
+
+[id^="demo-btn-"]:hover {
+  transform: translateY(-1px);
+}
+
+[id^="demo-btn-"]:active {
+  transform: translateY(0);
+  transition-duration: 80ms;
+}
+
+/* EMI rows — faint tint on hover */
+.emi-row {
+  transition: background 200ms var(--ease-in-out);
+  border-radius: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.emi-row:hover {
+  background: rgba(243, 239, 230, 0.04);
+}
+
+/* Flow tag badge — slight scale on parent hover */
+.flow-row:hover .flow-tag {
+  background: rgba(78, 156, 125, 0.14);
+  border-color: rgba(78, 156, 125, 0.5);
+  transition:
+    background 250ms var(--ease-in-out),
+    border-color 250ms var(--ease-in-out);
+}
+
+/* Stat numbers — scale pop on hover */
+.stat:hover b {
+  transform: scale(1.06);
+  transition: transform 250ms var(--ease-spring);
+  display: inline-block;
+}
+
+.stat b {
+  transition: transform 250ms var(--ease-spring);
+  display: inline-block;
+}
+
+/* Panel dots — coloured on hover (decorative, layout-safe) */
+.panel-dots span {
+  transition: background 250ms var(--ease-in-out), transform 250ms var(--ease-spring);
+}
+
+.panel-top:hover .panel-dots span:nth-child(1) { background: #E8524A; transform: scale(1.25); }
+.panel-top:hover .panel-dots span:nth-child(2) { background: #F4BE00; transform: scale(1.25); }
+.panel-top:hover .panel-dots span:nth-child(3) { background: #34C84A; transform: scale(1.25); }
+
+/* Map container — ring highlight on hover */
+#leaflet-map-container {
+  transition: box-shadow 280ms var(--ease-out-expo);
+}
+
+#leaflet-map-container:hover {
+  box-shadow: 0 0 0 2px rgba(227, 168, 59, 0.28), 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* Logo — subtle bob on hover */
+.logo {
+  transition: opacity 200ms var(--ease-in-out);
+}
+
+.logo:hover {
+  opacity: 0.88;
+}
+
+.logo svg {
+  transition: transform 350ms var(--ease-spring);
+}
+
+.logo:hover svg {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+/* Top recommended banner — border brightens */
+#top-recommended-banner {
+  transition:
+    border-color 280ms var(--ease-in-out),
+    box-shadow   280ms var(--ease-out-expo);
+}
+
+#top-recommended-banner:hover {
+  border-color: rgba(78, 156, 125, 0.7);
+  box-shadow: 0 4px 20px -6px rgba(78, 156, 125, 0.30);
+}
+
+
+/* ── 4. Reduced motion — all animations/transitions off ──────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .flow-row,
+  .compare-col,
+  .compare-col.win,
+  .panel,
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
